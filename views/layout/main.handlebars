@@ -8,6 +8,19 @@
     <title>Tech Blog</title>
 </head>
 <body>
-    
+    <header class="jumbotron">Tech Blog</header>
+    <nav>
+        <a href="/">Home</a>
+        {{#if loggedIn}}
+        <button id="logout" class="btn btn-logout">Logout</button>
+        {{else}}
+        <a href="/login">Login</a>
+        {{/if}}
+    </nav>
+    <main>
+        <div class="main-container">
+            {{body}}
+        </div>
+    </main>
 </body>
 </html>
