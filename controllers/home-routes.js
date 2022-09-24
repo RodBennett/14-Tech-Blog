@@ -77,7 +77,7 @@ router.get('/login', (req, res) => {
     return;
   }
   // Otherwise, render the 'login' template
-  res.render('login');
+  res.render('main');
 });
 
 module.exports = router;
