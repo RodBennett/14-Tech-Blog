@@ -1,6 +1,5 @@
 const router = require('express').Router();
-const Posts = require('../../models/Posts');
-const User = require('../../models/User');
+const { Posts, User } = require('../../models')
 const withAuth = require('../../utils/auth');
 
 
@@ -28,7 +27,7 @@ router.get('/', async (req, res) => {
 });
 
 // GET one post
-router.get('/posts/:id', async (req, res) => {
+router.get('/posts/:id', withAuth, async (req, res) => {
     try {
       const onePostData = await Posts.findByPk(req.params.id, {
         include: [
@@ -40,7 +39,7 @@ router.get('/posts/:id', async (req, res) => {
       });
       const post = onePostData.get({ plain: true });
 
-    res.render('readposts', {
+    res.render('homepage', {
       ...post,
       logged_in: req.session.logged_in
     });
@@ -48,10 +47,34 @@ router.get('/posts/:id', async (req, res) => {
     res.status(500).json(err);
   }
 });
-router.post('/posts/:id',)
+router.post('/', withAuth, async (req, res) => {
+  try {
+    const newPost = await Posts.create({
+      ...req.body,
+      user_id: req.session.user_id,
+    });
 
-router.put()
+    res.status(200).json(newPost);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
 
-router.delete()
+router.put('/posts/:id', withAuth, async (req, res) => {
+  // update a category by its `id` value
+
+    try {
+      const updatePost = await Posts.update(
+    {
+    ...req.body,
+    user_id: req.session.user_id,
+  });
+  res.status(200).json(updatePost)
+} catch (err) {
+  res.status(400).json(err)
+}
+ 
+
+});
 
 module.exports = router;

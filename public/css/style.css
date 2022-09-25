@@ -69,6 +69,18 @@ a {
     margin: 10px 50px 
 }
 
+.signup_btn {
+    margin: auto;
+    width: 25%;
+    height: 5vh;
+    font-size: larger;
+    background-color: rgb(33, 8, 8);
+    color: rgb(214, 237, 214);
+    margin-top: 10px;
+    margin-left: 40%
+
+}
+
 form {
     font-size: larger;
 }
@@ -139,4 +151,15 @@ form {
     margin-top: 10px;
     margin-left: 40%;
 
+}
+
+.login_btn {
+    margin: auto;
+    width: 25%;
+    height: 5vh;
+    font-size: larger;
+    background-color: rgb(33, 8, 8);
+    color: rgb(214, 237, 214);
+    margin-top: 10px;
+    margin-left: 40%;
 }
