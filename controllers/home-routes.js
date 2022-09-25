@@ -1,34 +1,33 @@
 const router = require('express').Router();
-const { Gallery, Painting } = require('../models');
+const Posts  = require('../models/Posts');
+const User = require('../models/User')
+const withAuth = require('../utils/auth')
 
-// GET all galleries for homepage
-router.get('/', async (req, res) => {
+// GET data for homepage
+router.get('/', withAuth, async (req, res) => {
   try {
-    const dbGalleryData = await Gallery.findAll({
+    const postData = await Posts.findAll({
       include: [
         {
-          model: Painting,
-          attributes: ['filename', 'description'],
-        },
-      ],
+          model: User,
+          attributes: ['name']
+        }
+      ]
     });
 
-    const galleries = dbGalleryData.map((gallery) =>
-      gallery.get({ plain: true })
-    );
-    // Send over the 'loggedIn' session variable to the 'homepage' template
-    res.render('homepage', {
-      galleries,
-      loggedIn: req.session.loggedIn,
+    const posts = postData.map((post) => post.get({ plain: true }));
+
+    res.render('dashboard', {
+      posts,
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
-    console.log(err);
     res.status(500).json(err);
   }
 });
 
-// GET one gallery
-router.get('/gallery/:id', async (req, res) => {
+// GET one post
+router.get('/post/:id', async (req, res) => {
   try {
     const dbGalleryData = await Gallery.findByPk(req.params.id, {
       include: [
