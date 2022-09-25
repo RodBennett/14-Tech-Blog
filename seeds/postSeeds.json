@@ -1,14 +1,8 @@
 [
     {
         "post_title": "MVC",
-        "post_content": "This is great software"
-    },
-    {
-        "post_title": "Twitter",
-        "post_content": "Greatest website for the destruction of humankind"
-    },
-    {
-        "post_title": "Yahoo",
-        "post_content": "A wonderful hasbeen"
+        "post_content": "This is great software",
+        "post_author": "Rod Bennett",
+        "post_date": "9/23/2022"
     }
 ]

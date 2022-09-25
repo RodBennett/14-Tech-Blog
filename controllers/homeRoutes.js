@@ -1,7 +1,6 @@
 const router = require('express').Router();
-const Posts = require('../models/Posts');
-const User = require('../models/User')
-//const withAuth = require('../utils/auth')
+const { Posts, User } = require('../models')
+const withAuth = require('../utils/auth')
 
 // GET data for homepage
 router.get('/', async (req, res) => {
@@ -14,9 +13,8 @@ router.get('/', async (req, res) => {
         }
       ]
     });
-
+    // creates an array / map of all posts and lists them on homepage 
     const posts = postData.map((post) => post.get({ plain: true }));
-
     res.render('homepage', {
       posts,
       logged_in: req.session.logged_in,
@@ -27,15 +25,53 @@ router.get('/', async (req, res) => {
 });
 
 // Login route
+router.get('/posts/:id', withAuth, async (req, res) => {
+  try {
+    const postdata = await Posts.findByPk(req.params.id, {
+      include: [
+        { 
+          model: User,
+          attributes: ['name'],
+        },
+      ],
+    });
+    const post = postdata.get({ plain: true });
+    res.render('readPost', {
+      ...post,
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/readPost', withAuth, async (req, res) => {
+  try {
+    // Find the logged in user based on the session ID
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ['password'] },
+      include: [{ model: Posts }],
+    });
+
+    const user = userData.get({ plain: true });
+
+    res.render('readPost', {
+      ...user,
+      logged_in: true
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 router.get('/login', (req, res) => {
-  // If the user is already logged in, redirect to the homepage
-  if (req.session.loggedIn) {
-    res.redirect('/readpost');
+  // If the user is already logged in, redirect the request to another route
+  if (req.session.logged_in) {
+    res.redirect('/readPost');
     return;
   }
-  console.log("login here ++++++++++++++++++++++++++++++++++++++++++")
-  // Otherwise, render the 'login' template
-  res.render('/login');
+
+  res.render('login');
 });
 
 module.exports = router;
