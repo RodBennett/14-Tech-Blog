@@ -17,7 +17,6 @@ router.post('/', async (req, res) => {
   }
 });
 
-
 // Login
 router.post('/login', async (req, res) => {
   try {
@@ -40,6 +39,13 @@ router.post('/login', async (req, res) => {
       res
         .status(400)
         .json({ message: 'Incorrect email or password. Please try again!' });
+      return;
+    }
+
+    if (!userData && !validPassword) {
+      res
+        .redirect('/signup')
+        .json({ message: "Please create user account"})
       return;
     }
 

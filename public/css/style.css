@@ -5,8 +5,8 @@
 }
 
 header {
-    background-color: rgb(33, 8, 8);
-    color: rgb(214, 237, 214);
+    background-color: rgb(56, 22, 22);
+    color: rgb(188, 220, 188);
     height: 20vh;
 }
 
@@ -15,6 +15,7 @@ nav{
     justify-content: space-around;
     font-size: larger;
     color:rgb(214, 237, 214);
+    margin-left: 20px;
 }
 a {
     text-decoration: none;
@@ -24,17 +25,16 @@ a {
 }
 .jumbotron-home {
     background: rgb(214, 237, 214);
-    color: rgb(33, 8, 8);
+    color: rgb(56, 22, 22);
     width: 200px;
     margin: 40px;
     border-radius: 5px;
     text-align: center;
-
 }
 
 .jumbotron-dashboard {
     background: rgb(214, 237, 214);
-    color: rgb(33, 8, 8);
+    color: rgb(56, 22, 22);
     width: 400px;
     margin: 40px;
     border-radius: 5px;
@@ -46,78 +46,85 @@ a {
     height: 100vh;
 }
 
-.signup-form-container {
+.signup-form {
     border: 2px solid rgb(33, 8, 8);
     width: 90%;
     margin: auto;
     margin-top: 30px;
-    height: 50vh;
-
+    height: 60vh;
 }
 
 .signup-header{
-    background-color: rgb(33, 8, 8);
-    font-size: larger;
+    background-color: rgb(56, 22, 22);
+    font-size: x-large;
     color: rgb(214, 237, 214);
     height: 10vh;
+    padding: 15px;
 }
 
 .signup-text {
     padding: 20px;
 }
 .signup-contents{
-    margin: 10px 50px 
+    margin: 10px 50px ;
 }
 
-.signup_btn {
-    margin: auto;
-    width: 25%;
+#username-signup {
+    width: 40%;
     height: 5vh;
-    font-size: larger;
-    background-color: rgb(33, 8, 8);
-    color: rgb(214, 237, 214);
-    margin-top: 10px;
-    margin-left: 40%
-
 }
 
+#email-signup {
+    width: 40%;
+    height: 5vh;
+}
+
+#password-signup{
+    width: 40%;
+    height: 5vh;
+}
+
+#login-href{
+    color: blue;
+    margin-top: 30px;
+    padding: 100px;
+    font-size:x-large;
+    
+}
 form {
     font-size: larger;
+    margin-top: 10px;
+    padding: 20px;
 }
 
-#uname {
+#email-login {
     width: 40%;
     height: 5vh;
 }
-#password {
+#password-login {
     width: 40%;
     height: 5vh;
 }
 
-.submitbtn {
+.submit {
     width: 80%;
-    height: 5vh;
-    font-size: large;
-    margin-top: 20px;
-}
-
-#login {
-    color: blue;
-    margin: 50px;
+    height: 7vh;
     font-size: larger;
+    margin-top: 20px;
+    background-color: rgb(56, 22, 22);
+    color: rgb(214, 237, 214)
 }
 
-.login-form-container {
-    border: 2px solid rgb(33, 8, 8);
+.login-form {
+    border: 2px solid rgb(56, 22, 22);
     width: 90%;
     margin: auto;
     margin-top: 30px;
     height: 50vh;
 }
 
-
 .readpost-cards {
-    border: 2px solid rgb(33, 8, 8);
+    border: 2px solid rgb(56, 22, 22);
     width: 95%;
     margin: auto;
     margin-top: 20px;
@@ -126,7 +133,7 @@ form {
 }
 
 .readpost-header{
-    background-color: rgb(33, 8, 8);
+    background-color: rgb(56, 22, 22);
     height: 5vh;
 }
 
@@ -137,7 +144,7 @@ form {
 }
 
 .readpost-text {
-    color: rgb(33, 8, 8);
+    color: rgb(56, 22, 22);
     padding: 10px;
 }
 
@@ -146,20 +153,10 @@ form {
     width: 25%;
     height: 5vh;
     font-size: larger;
-    background-color: rgb(33, 8, 8);
+    background-color: rgb(56, 22, 22);
     color: rgb(214, 237, 214);
     margin-top: 10px;
     margin-left: 40%;
 
 }
 
-.login_btn {
-    margin: auto;
-    width: 25%;
-    height: 5vh;
-    font-size: larger;
-    background-color: rgb(33, 8, 8);
-    color: rgb(214, 237, 214);
-    margin-top: 10px;
-    margin-left: 40%;
-}
