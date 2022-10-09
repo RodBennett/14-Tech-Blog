@@ -1,7 +1,7 @@
 * {
     box-sizing: border-box;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    flex: 1 0
+    flex: 1 0;
 }
 
 header {
@@ -46,14 +46,19 @@ a {
     height: 100vh;
 }
 
-.signup-form {
-    border: 2px solid rgb(33, 8, 8);
+.signup-card {
+    border: 2px solid rgb(56, 22, 22);
     width: 90%;
     margin: auto;
     margin-top: 30px;
     height: 60vh;
 }
 
+.signup-form {
+    font-size: larger;
+    margin-top: 10px;
+    padding: 20px;
+}
 .signup-header{
     background-color: rgb(56, 22, 22);
     font-size: x-large;
@@ -66,7 +71,7 @@ a {
     padding: 20px;
 }
 .signup-contents{
-    margin: 10px 50px ;
+    margin: 10px 50px;
 }
 
 #username-signup {
@@ -91,7 +96,7 @@ a {
     font-size:x-large;
     
 }
-form {
+.login-form {
     font-size: larger;
     margin-top: 10px;
     padding: 20px;
@@ -106,7 +111,7 @@ form {
     height: 5vh;
 }
 
-.submit {
+.submitbtn {
     width: 80%;
     height: 7vh;
     font-size: larger;
@@ -115,7 +120,7 @@ form {
     color: rgb(214, 237, 214)
 }
 
-.login-form {
+.login-card {
     border: 2px solid rgb(56, 22, 22);
     width: 90%;
     margin: auto;
@@ -157,6 +162,4 @@ form {
     color: rgb(214, 237, 214);
     margin-top: 10px;
     margin-left: 40%;
-
 }
-

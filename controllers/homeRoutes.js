@@ -1,18 +1,36 @@
 const router = require('express').Router();
-const { Posts, User } = require('../models')
+const { Post, User } = require('../models')
 const withAuth = require('../utils/auth')
+
+// endpoint /login
+
+// route for redirecting user to the homepage after account is created
+router.get("/signup", (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect("/");
+    return;
+  }
+  res.render("signup");
+});
 
 // GET data for homepage
 router.get('/', async (req, res) => {
   try {
-    const postData = await Posts.findAll({
-      include: [
-        {
-          model: User,
-          attributes: ['username']
-        }
-      ]
+    const postData = await Post.findAll({
+      include: 
+      [{ model: User }],
     });
+
+    // after login, this redirects user to homepage
+router.get("/login", (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect("/");
+    return;
+  }
+  console.log("++++++++++++You are Logged in++++++++++++++")
+  res.render("login");
+});
+
     // creates an array / map of all posts and lists them on homepage 
     const posts = postData.map((post) => post.get({ plain: true }));
     res.render('homepage', {
@@ -24,39 +42,37 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Login route
+
+// This route allows user to get all data after login and to search posts
 router.get('/posts/:id', withAuth, async (req, res) => {
   try {
-    const postdata = await Posts.findByPk(req.params.id, {
-      include: [
-        { 
-          model: User,
-          attributes: ['name'],
-        },
-      ],
+    const postData = await Post.findByPk(req.params.id, {
+      include:
+       [{ model: Post, include: { model: User } }, { model: User}],
     });
-    const post = postdata.get({ plain: true });
-    res.render('readPost', {
-      ...post,
+    const posts = postData.get({ plain: true });
+    res.render('readpost', {
+      posts,
       logged_in: req.session.logged_in,
+      user
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.get('/homepage', withAuth, async (req, res) => {
+// GET enitre posts for users who are logged in
+router.get('/posts', withAuth, async (req, res) => {
   try {
-    // Find the logged in user based on the session ID
-    const userData = await User.findByPk(req.session.user_id, {
+    const postData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
-      include: [{ model: Posts }],
+      include: [{ model: Post, include: {model: User } }, { model: User }],
     });
 
-    const user = userData.get({ plain: true });
+    const posts = postData.get({ plain: true });
 
-    res.render('homepage', {
-      ...user,
+    res.render('readpost', {
+      ...posts,
       logged_in: true
     });
   } catch (err) {
@@ -64,25 +80,41 @@ router.get('/homepage', withAuth, async (req, res) => {
   }
 });
 
-router.get('/login', (req, res) => {
-  // If the user is already logged in, redirect the request to another route
-  if (req.session.logged_in) {
-    res.redirect('/homepage');
-    return;
+router.post('/', withAuth, async (req, res) => {
+  try {
+    const newPost = await Post.create({
+      ...req.body,
+      user_id: req.session.user_id,
+    });
+
+    res.status(200).json(newPost);
+  } catch (err) {
+    res.status(400).json(err);
   }
-  res.render('login');
 });
 
-// route for redirecting user to sign up page if no account exists, and then to homepage after creating login
+router.delete('/posts/:id', withAuth, async (req, res) => {
+  try {
+    const postData = await Post.destroy({
+      where: {
+        id: req.params.id,
+        user_id: req.session.user_id,
+      },
+    });
 
-router.get("/signup", (req, res) => {
-  if (req.session.loggedIn) {
-    res.redirect("/");
-    return;
+    if (!postData) {
+      res.status(404).json({ message: 'No project found with this id!' });
+      return;
+    }
+
+    res.status(200).json(projectData);
+  } catch (err) {
+    res.status(500).json(err);
   }
-
-  res.render("signup");
 });
+
+
+module.exports = router;
 
 
 module.exports = router;
