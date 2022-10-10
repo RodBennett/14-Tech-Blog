@@ -1,8 +1,13 @@
+{{#if logged_in}}
 <div class="readpost-cards">
             <div class="readpost-header">
-                <div class="readpost-title">title</div>
-                <div class="author">Posted by {{post_author}} at {{format_date post.date_created}}</div>
+                <div class="readpost-title">{{post.id}} {{post.post_title}}</div>
+                <p class="author">Posted by {{user.username}} at {{format_date post.date_created}}</p>
+                <p class="readpost-text">{{post.post_content}} hello</p>
             </div>
-        <div class="readpost-text">hello</div>
-        <button class="createpost-btn">+ New Post</button>
+            <div class="comment-container">
+                {{ > read-comment content }}
         </div>
+    {{else}}
+    <a href="/login">Login</a>
+    {{/if}}

@@ -19,10 +19,6 @@ Post.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        post_author: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
         post_date: {
             type: DataTypes.DATE,
             allowNull: false,

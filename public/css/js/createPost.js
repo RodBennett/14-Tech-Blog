@@ -7,14 +7,16 @@ const createPostFormHandler = async (event) => {
     const text = document.querySelector(".readpost-text").value.trim();
   
     if (title && text) {
-      const response = await fetch("/create-post", {
+      // may need api/
+    
+      const response = await fetch("/post-routes", {
         method: "POST",
         body: JSON.stringify({ title, text }),
         headers: { "Text-Type": "application/json" },
       });
   
       if (response.ok) {
-        document.location.replace("/user-posts");
+        document.location.replace("/readpost");
       } else {
         alert("Failed to log in.");
       }
@@ -22,5 +24,5 @@ const createPostFormHandler = async (event) => {
   };
   
   document
-    .querySelector(".login-form")
+    .querySelector(".createpost-btn")
     .addEventListener("submit", createPostFormHandler);
