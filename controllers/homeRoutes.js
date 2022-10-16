@@ -40,30 +40,30 @@ router.get("/login", (req, res) => {
 });
 
 // This route allows user to get all data after login and to search posts with comments
-router.get('/posts/:id', withAuth, async (req, res) => {
-  try {
-    const postData = await Post.findByPk(req.params.id, {
-      include:
-       [{ model: User }, { model: Comment, include: { model: User } }],
-    });
+// router.get('/posts/:id', withAuth, async (req, res) => {
+//   try {
+//     const postData = await Post.findByPk(req.params.id, {
+//       include:
+//        [{ model: User }, { model: Comment, include: { model: User } }],
+//     });
 
-    if (!postData) {
-      res.status(400).json({ message: "No post found with this id" });
-      return;
-    }
+//     if (!postData) {
+//       res.status(400).json({ message: "No post found with this id" });
+//       return;
+//     }
 
-    const post = postData.get({ plain: true });
-    const comment = post.comment;
+//     const post = postData.get({ plain: true });
+//     const comment = post.comment;
 
-    res.render('readpost', {
-      post,
-      comment,
-      logged_in: req.session.logged_in,
-      user_id
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+//     res.render('readpost', {
+//       post,
+//       comment,
+//       logged_in: req.session.logged_in,
+//       user_id
+//     });
+//   } catch (err) {
+//     res.status(502).json(err);
+//   }
+// });
 
 module.exports = router;

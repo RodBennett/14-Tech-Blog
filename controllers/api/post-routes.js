@@ -31,12 +31,21 @@ router.get("/:id", withAuth, async (req, res) => {
       res.status(404).json({ message: "No post found with this id" });
       return;
     }
-    res.status(200).json(dbPostData);
+
+    const post = dbPostData.get({ plain: true });
+    const comment = post.comment;
+    res.render('readpost', {
+            post,
+            comment,
+            logged_in: req.session.logged_in,
+          });
+   // res.status(200).json(dbPostData);
   } catch (err) {
     console.log(err);
-    res.status(500).json(err);
+    res.status(501).json(err);
   }
 });
+
 
 // POST route for creating a post
 router.post('/', withAuth, async (req, res) => {

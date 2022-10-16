@@ -1,15 +1,23 @@
-<header>
+{{!-- <header>
     <nav>
         <a href="/">Home</a>
         <a href="/logout">Logout</a>
         <a href="/login">Login</a>
-        <a href="/">Dashboard</a>
+        <a href="/dashboard">Dashboard</a>
     </nav>
     <h1 class="jumbotron-dashboard">Your Dashboard</h1>
-</header>
-
-    <main class="main-container">
-            
+</header> --}}
+{{#if logged_in}}
+    <div class="createpost-container">
+        <form class="form createpost-form">
+            <textarea name="posttitle" id="post-title" placeholder="Title"></textarea>
+            <textarea name="postcontent" id="post-content" placeholder="Post content"></textarea>
         <button class="createpost-btn">+ New Post</button>
+        </form>
        </div>
-    </main> 
+
+    {{else}}    
+    <a href="/login">Login</a>
+    {{/if}}
+
+    <script src="css/js/createPost.js"></script> 

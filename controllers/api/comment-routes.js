@@ -17,7 +17,7 @@ router.get("/", async (req, res) => {
 });
 
 // GET route for one single comment
-router.get("/:id", async (req, res) => {
+router.get("/:id", withAuth, async (req, res) => {
   try {
     const dbCommentData = await Comment.findByPk({
       where: {
@@ -36,14 +36,15 @@ router.post("/", withAuth, async (req, res) => {
   if (req.session) {
     try {
       const newComment = await Comment.create({
-        comment_text: req.body.comment_text,
         post_id: req.body.post_id,
         user_id: req.session.user_id,
+        content: req.body.content,
       });
+      console.log(content, "++++++++++++++++++++++++++")
       res.json(newComment);
     } catch (err) {
       console.log(err);
-      res.status(500).json(err);
+      res.status(501).json(err);
     }
   }
 });
@@ -53,7 +54,10 @@ router.put("/:id", withAuth, async (req, res) => {
   try {
     const updateComment = await Comment.update(
       {
-        comment_text: req.body.comment_text,
+        user_id: req.session.user_id,
+        post_id: req.body.post_id,
+        content: req.body.content,
+
       },
       {
         where: {

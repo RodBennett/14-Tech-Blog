@@ -11,19 +11,19 @@
     <header>
     <nav>
         <a href="/">Home</a>
+         {{!-- <a href="/dashboard">Dashboard</a> --}}
         {{#if logged_in}}
         <a href="/logout">Logout</a>
         {{else}}
         <a href="/login">Login</a>
         {{/if}}
-        <a href="/">Dashboard</a>
     </nav>
     <h1 class="jumbotron-home">Tech Blog</h1>
     </header>
     <main>
-        <div class="main-container">
+        {{!-- <div class="main-container"> --}}
             {{{ body }}}
-        </div>
+        {{!-- </div> --}}
     </main>
 </body>
 </html>

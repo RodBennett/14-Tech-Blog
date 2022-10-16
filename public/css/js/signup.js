@@ -13,7 +13,7 @@ const signupFormHandler = async (event) => {
       });
   console.log(username, email, password)
       if (response.ok) {
-        document.location.replace('/homepage');
+        document.location.replace('/');
       } else {
         alert('Failed to sign up.');
       }

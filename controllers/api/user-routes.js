@@ -3,17 +3,17 @@ const { User, Post, Comment } = require('../../models');
 
 
 // GET route for all users
-router.get("/", async (req, res) => {
-  try {
-    const userData = await User.findAll({
-      attributes: { exclude: ["[password"] },
-    });
-    res.json(userData);
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
+// router.get("/", async (req, res) => {
+//   try {
+//     const userData = await User.findAll({
+//       attributes: { exclude: ["[password"] },
+//     });
+//     res.json(userData);
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).json(err);
+//   }
+// });
 
 // GET route to find one user
 router.get("/:id", async (req, res) => {
@@ -42,17 +42,18 @@ router.post('/', async (req, res) => {
   try {
     const userData = await User.create({
       username: req.body.username,
+      email: req.body.email,
       password: req.body.password,
     });
     req.session.save(() => {
-      req.session.user_id = userData.id;
+      req.session.user_id = userData.user_id;
       req.session.username = userData.username;
       req.session.logged_in = true;
 
-      res.json(userData)
-    });
+  });
+  res.redirect('/')
   } catch (err) {
-    res.status(400).json(err);
+    res.status(403).json(err);
   }
 });
 

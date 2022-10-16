@@ -41,9 +41,10 @@ a {
     text-align: center;
 }
 
-.main-container {
+main {
     background-color: rgb(214, 237, 214);
     height: 100vh;
+    margin-top: 0;
 }
 
 .signup-card {
@@ -94,7 +95,6 @@ a {
     margin-top: 30px;
     padding: 100px;
     font-size:x-large;
-    
 }
 
 .login-btn:hover {
@@ -147,9 +147,9 @@ a {
 
 .readpost-cards {
     border: 2px solid rgb(56, 22, 22);
-    width: 95%;
+    width: 90%;
     margin: auto;
-    margin-top: 20px;
+    margin-top: 30px;
     height: 15vh;
     border-radius: 5px;
 }
@@ -180,19 +180,37 @@ a {
     padding: 10px;
 }
 
-.comment-container{
-    background-color: white;
-    color: black;
+.createcomment-card{
+    /* background-color: rgb(214, 237, 214);
+    border: 2px solid rgb(56, 22, 22); */
+    width: 90%;
+    margin: auto;
+    margin-top: 20px;
+    height: 15vh;
+    border-radius: 5px;
 }
 
-.create-comment {
-    background-color: white;
+#comment-textarea {
     color: black;
+    background-color: aliceblue;
+    height: 10vh;
+    width: 100%;
+    font-size: x-large;
 }
 
 .create-comment::placeholder {
     color: grey;
 }
+/* #comment-textarea {
+    border: 2px solid rgb(56, 22, 22);
+    width: 90%;
+    margin: auto;
+    margin-top: 20px;
+    height: 15vh;
+    border-radius: 5px;
+    font-size: large;
+} */
+
 
 .comment-button {
     margin: auto;
