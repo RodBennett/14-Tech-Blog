@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { User, Post, Comment } = require('../../models');
 
+// endpoint /api/users
 
 // GET route for all users
 router.get("/", async (req, res) => {
@@ -21,9 +22,10 @@ router.get("/login", async (req, res) => {
     const userData = await User.findOne({
       where: {
         id: req.body.username,
+        password: req.body.password
       },
-      include: [
-        { model: Post, include: { model: User } }, { model: Post}, { model: Comment }],
+    //   include: [
+    //     { model: Post, include: { model: User } }, { model: Post}, { model: Comment }],
     });
     if (!userData) {
       res.status(404).json({ message: "No user found with this id" });

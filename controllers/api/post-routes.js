@@ -46,7 +46,6 @@ router.get("/:id", withAuth, async (req, res) => {
   }
 });
 
-
 // POST route for creating a post
 router.post('/', withAuth, async (req, res) => {
   try {
