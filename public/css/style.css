@@ -75,6 +75,11 @@ main {
     margin: 10px 50px;
 }
 
+#username-input{
+    width: 40%;
+    height: 5vh;
+}
+
 #username-signup {
     width: 40%;
     height: 5vh;

@@ -39,7 +39,7 @@ router.get("/:id", withAuth, async (req, res) => {
             comment,
             logged_in: req.session.logged_in,
           });
-   // res.status(200).json(dbPostData);
+   res.status(200).json(dbPostData);
   } catch (err) {
     console.log(err);
     res.status(501).json(err);

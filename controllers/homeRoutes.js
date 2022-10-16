@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
 
     res.render("homepage", {
       posts,
-      loggedIn: req.session.loggedIn,
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
     console.log(err);
@@ -21,9 +21,38 @@ router.get("/", async (req, res) => {
   }
 });
 
+// GET one post by id
+// router.get(":id", withAuth, async (req, res) => {
+//   try {
+//     const dbPostData = await Post.findOne({
+//       where: {
+//         id: req.params.id,
+//       },
+//       include: [
+//         { model: User}, { model: Comment, include: {model: User } }],
+//     });
+//     if (!dbPostData) {
+//       res.status(404).json({ message: "No post found with this id" });
+//       return;
+//     }
+
+//     const post = dbPostData.get({ plain: true });
+//     const comment = post.comment;
+//     res.render('readpost', {
+//             post,
+//             comment,
+//             logged_in: req.session.logged_in,
+//           });
+//     res.status(200).json(dbPostData);
+//   } catch (err) {
+//     console.log(err);
+//     res.status(501).json(err);
+//   }
+// });
+
 // GET route to redierct user to homepage after signing up
 router.get("/signup", (req, res) => {
-  if (req.session.loggedIn) {
+  if (req.session.logged_in) {
     res.redirect("/");
     return;
   }
@@ -32,38 +61,12 @@ router.get("/signup", (req, res) => {
 
 // GET route for loggin in and redirecting to homepage if logged-in
 router.get("/login", (req, res) => {
-  if (req.session.loggedIn) {
+  if (req.session.logged_in) {
     res.redirect("/");
     return;
   }
   res.render("login");
 });
 
-// This route allows user to get all data after login and to search posts with comments
-// router.get('/posts/:id', withAuth, async (req, res) => {
-//   try {
-//     const postData = await Post.findByPk(req.params.id, {
-//       include:
-//        [{ model: User }, { model: Comment, include: { model: User } }],
-//     });
-
-//     if (!postData) {
-//       res.status(400).json({ message: "No post found with this id" });
-//       return;
-//     }
-
-//     const post = postData.get({ plain: true });
-//     const comment = post.comment;
-
-//     res.render('readpost', {
-//       post,
-//       comment,
-//       logged_in: req.session.logged_in,
-//       user_id
-//     });
-//   } catch (err) {
-//     res.status(502).json(err);
-//   }
-// });
 
 module.exports = router;
