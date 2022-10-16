@@ -29,6 +29,12 @@ router.get("/login", async (req, res) => {
       res.status(404).json({ message: "No user found with this id" });
       return;
     }
+
+    const validPassword = userData.checkPassword(req.body.password)
+    if(!validPassword) {
+      res.json(400).json({ message: "Invalid password" });
+      return
+    }
     res.json(userData);
   } catch (err) {
     console.log(err);
@@ -48,10 +54,59 @@ router.post('/', async (req, res) => {
       req.session.username = userData.username;
       req.session.logged_in = true;
 
+      res.json(userData)
+
   });
-  res.redirect('/')
   } catch (err) {
-    res.status(403).json(err);
+    res.status(500).json(err);
+  }
+});
+
+// Login
+router.post('/login', async (req, res) => {
+  try {
+    const userData = await User.findOne({
+      where: {
+        email: req.body.email,
+      },
+    });
+
+    if (!userData) {
+      res
+        .status(400)
+        .json({ message: 'Incorrect username or password. Please try again!' });
+      return;
+    }
+    const validPassword = userData.checkPassword(req.body.password);
+
+    if (!validPassword) {
+      res
+        .status(400)
+        .redirect('/login')
+        .json({ message: 'Incorrect password. Please try again!' });
+      return;
+    }
+
+    if (!userData && !validPassword) {
+      res
+        .redirect('/signup')
+        .json({ message: "Please create user account"})
+      return;
+    }
+    // Once the user successfully logs in, set up the sessions variable 'logged_in'
+    req.session.save(() => {
+      req.session.user_id = userData.id;
+      req.session.username = userData.username;
+      req.session.logged_in = true;
+
+      res
+        .status(200)
+        .json({ userData, message: 'You are now logged in!' })
+        .redirect('/homepage')
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
   }
 });
 
@@ -73,54 +128,6 @@ router.get("/signup", (req, res) => {
     res.render("login");
   }),
 
-// Login
-router.post('/login', async (req, res) => {
-  try {
-    const userData = await User.findOne({
-      where: {
-        email: req.body.email,
-      },
-    });
-
-    if (!userData) {
-      res
-        .status(400)
-        .json({ message: 'Incorrect email or password. Please try again!' });
-      return;
-    }
-    const validPassword = userData.checkPassword(req.body.password);
-
-    if (!validPassword) {
-      res
-        .status(400)
-        .redirect('/login')
-        .json({ message: 'Incorrect email or password. Please try again!' });
-      return;
-    }
-
-    if (!userData && !validPassword) {
-      res
-        .redirect('/signup')
-        .json({ message: "Please create user account"})
-      return;
-    }
-    // Once the user successfully logs in, set up the sessions variable 'logged_in'
-    req.session.save(() => {
-      req.session.user_id = userData.id;
-      req.session.username = userData.username;
-      req.session.logged_in = true;
-
-      res
-        .status(200)
-        .json({ user: userData, message: 'You are now logged in!' })
-        .redirect('/homepage')
-    });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
-
 // Logout
 router.post('/logout', (req, res) => {
   // When the user logs out, destroy the session
@@ -130,28 +137,6 @@ router.post('/logout', (req, res) => {
     });
   } else {
     res.status(404).end();
-  }
-});
-
-
-// DELETE route for user
-
-router.delete("/:id", async (req, res) => {
-  try {
-    const dbUserData = await User.destroy({
-      where: {
-        id: req.params.id,
-      },
-    });
-    if (!dbUserData) {
-      res.status(404).json({ message: "No user found with this id" });
-      return;
-    }
-
-    res.json(dbUserData);
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
   }
 });
 
