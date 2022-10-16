@@ -3,17 +3,17 @@ const { User, Post, Comment } = require('../../models');
 
 
 // GET route for all users
-// router.get("/", async (req, res) => {
-//   try {
-//     const userData = await User.findAll({
-//       attributes: { exclude: ["[password"] },
-//     });
-//     res.json(userData);
-//   } catch (err) {
-//     console.log(err);
-//     res.status(500).json(err);
-//   }
-// });
+router.get("/", async (req, res) => {
+  try {
+    const userData = await User.findAll({
+      attributes: { exclude: ["[password"] },
+    });
+    res.json(userData);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
 
 // GET route to find one user
 router.get("/login", async (req, res) => {
@@ -67,7 +67,7 @@ router.post('/login', async (req, res) => {
   try {
     const userData = await User.findOne({
       where: {
-        email: req.body.email,
+        username: req.body.username,
       },
     });
 
@@ -120,7 +120,7 @@ router.get("/signup", (req, res) => {
 
    // after login, this redirects user to homepage
    router.get("/login", (req, res) => {
- 
+    console.log(req.session)
     if (req.session.logged_in) {
       res.redirect("/");
       return;
@@ -131,6 +131,7 @@ router.get("/signup", (req, res) => {
 // Logout
 router.post('/logout', (req, res) => {
   // When the user logs out, destroy the session
+  console.log(req.session)
   if (req.session.logged_in) {
     req.session.destroy(() => {
       res.status(204).end();
