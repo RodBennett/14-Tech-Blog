@@ -1,25 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Tech Blog</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
 <header>
     <nav>
         <a href="/">Home</a>
-        <a href="/login">Login</a>
         <a href="/dashboard">Dashboard</a>
-        {{#if logged_in}}
         <a href="#" id="logout">Logout</a>
-        {{/if}}
     </nav>
     <h1 class="jumbotron-dashboard">Your Dashboard</h1>
+
 </header>
-{{#if logged_in}}
-    <div class="createpost-container">
+<main>
+    {{{ body }}}
+    <a href="/createpost"><button class="createpost-btn">+ New Post</button></a>
+</main>
+
+
+<script src="/js/logout.js"></script> 
+
+ {{!-- <div class="createpost-container">
         <form class="form createpost-form">
             <textarea name="posttitle" id="post-title" placeholder="Title"></textarea>
             <textarea name="postcontent" id="post-content" placeholder="Post content"></textarea>
         <button class="createpost-btn">+ New Post</button>
         </form>
-       </div>
-
-    {{else}}    
-    <a href="/login">Login</a>
-    {{/if}}
-
-    <script src="/js/createPost.js"></script> 
+       </div> --}}
