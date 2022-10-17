@@ -72,6 +72,7 @@ router.post('/login', async (req, res) => {
         username: req.body.username,
       },
     });
+    document.location.redirect('/dashboard')
 
     if (!userData) {
       res

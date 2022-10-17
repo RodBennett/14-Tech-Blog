@@ -12,11 +12,10 @@
     <nav>
         <a href="/">Home</a>
          <a href="/dashboard">Dashboard</a>
-        {{!-- {{#if logged_in}} --}}
+         <a href="/login">Login</a>
+        {{#if logged_in}}
         <a href="/logout" id="logout">Logout</a>
-        {{!-- {{else}} --}}
-        <a href="/login">Login</a>
-        {{!-- {{/if}} --}}
+        {{/if}}
     </nav>
     <h1 class="jumbotron-home">Tech Blog</h1>
     </header>
