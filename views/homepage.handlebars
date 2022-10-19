@@ -9,13 +9,13 @@
             <div class="readpost-text"><p>{{post.post_content}}</p></div>
     </div></a>
 {{/each}}
-    {{!-- {{#if logged_in}} --}}
-    <a href="/createpost"><button class="createpost-btn">+ New Post</button></a>
-    <a href="/logout">Logout</a>
-    {{!-- {{else}} --}}
+    {{#if logged_in}}
+    <a href="/dashboard"><button class="createpost-btn">+ New Post</button></a>
+    <a href="#" id="logout">Logout</a>
+    {{else}}
     <a href="/login">Login</a>
-    {{!-- {{/if}} --}}
+    {{/if}}
 
-    <script src="/js/createpost.js"></script>
+    {{!-- <script src="/js/createpost.js"></script> --}}
     <script src="/js/logout.js"></script>
 

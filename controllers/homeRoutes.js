@@ -29,7 +29,7 @@ router.get(":id", withAuth, async (req, res) => {
         id: req.params.id,
       },
       include: [
-        { model: User}, { model: Comment, include: {model: User } }],
+        { model: User }, { model: Comment, include: {model: User } }],
     });
     if (!dbPostData) {
       res.status(404).json({ message: "No post found with this id" });
@@ -38,7 +38,7 @@ router.get(":id", withAuth, async (req, res) => {
 
     const post = dbPostData.get({ plain: true });
     const comment = post.comment;
-    res.render('readpost', {
+    res.render('dashboard', {
             post,
             comment,
             logged_in: req.session.logged_in,

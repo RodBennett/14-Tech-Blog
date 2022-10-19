@@ -14,7 +14,6 @@ const signupFormHandler = async function(event) {
       });
   
     if (response.ok) {
-        console.log(response, "LOGGED IN____________________")
     document.location.replace('/dashboard');
     } else {
       alert('Failed to sign up');

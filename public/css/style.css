@@ -116,10 +116,6 @@ main {
     padding: 20px;
 }
 
-/* #email-login {
-    width: 40%;
-    height: 5vh;
-} */
 #password-login {
     width: 40%;
     height: 5vh;
@@ -149,7 +145,7 @@ main {
     margin-top: 30px;
     height: 50vh;
 }
-
+/* READ SINGLE POST CSS FOR 'READPOST' HANDLEBARS PAGE */
 .readpost-cards {
     border: 2px solid rgb(56, 22, 22);
     width: 90%;
@@ -185,6 +181,7 @@ main {
     padding: 10px;
 }
 
+/* CREATE NEW COMMENT ON READPOST HANDLEBARS PAGE */
 .createcomment-card{
     /* background-color: rgb(214, 237, 214);
     border: 2px solid rgb(56, 22, 22); */
@@ -228,6 +225,9 @@ main {
     margin-left: 40%;
 }
 
+/* CREATE NEW POST  */
+
+/* CREATE NEW POST BUTTONS */
 .createpost-btn {
     margin: auto;
     width: 25%;
@@ -246,4 +246,15 @@ main {
 
 .createpost-btn:active {
     box-shadow: 1px 1px 1px 1px;
+}
+
+/* CREATE POST TEXT AREAS AND FONT */
+.createpost-title {
+    background-color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.createpost-text{
+    background-color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
