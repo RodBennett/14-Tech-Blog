@@ -23,20 +23,21 @@ a {
     margin-top: 20px;
     margin-left: 10px;
 }
-.jumbotron-home {
+.jumbotron {
     background: rgb(214, 237, 214);
     color: rgb(56, 22, 22);
     width: 200px;
-    margin: 40px;
+    margin: 50px;
     border-radius: 5px;
     text-align: center;
+    
 }
 
 .jumbotron-dashboard {
     background: rgb(214, 237, 214);
     color: rgb(56, 22, 22);
-    width: 400px;
-    margin: 40px;
+    width: 300px;
+    margin: 50px;
     border-radius: 5px;
     text-align: center;
 }
@@ -84,11 +85,6 @@ main {
     width: 40%;
     height: 5vh;
 }
-
-/* #email-signup {
-    width: 40%;
-    height: 5vh;
-} */
 
 #password-signup{
     width: 40%;
@@ -181,6 +177,68 @@ main {
     padding: 10px;
 }
 
+/* CREATE POST HANDLEBARS PAGE */
+.createpost-card{
+    border: 2px solid rgb(56, 22, 22);
+    width: 80%;
+    margin: auto;
+    margin-top: 30px;
+    height: 50vh;
+    border-radius: 5px;
+}
+.createnewpost {
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.createpost-header{
+    /* margin: auto; */
+    height: 10vh;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.createpost-title {
+    margin: auto;
+    width: 100%;
+    padding: 10px;
+    font-size:xx-large;
+    background-color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+
+.createpost-text{
+    width: 100%;
+    padding: 10px;
+    font-size: x-large;
+    margin: auto;
+    height: 15vh;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+.createpost-btn {
+    margin: auto;
+    width: 25%;
+    height: 5vh;
+    font-size: larger;
+    background-color: rgb(56, 22, 22);
+    color: rgb(214, 237, 214);
+    margin-top: 20px;
+    margin-left: 40%;
+}
+
+.createpost-btn:hover {
+    cursor: pointer;
+    color: darkcyan;
+}
+
+.createpost-btn:active {
+    box-shadow: 1px 1px 1px 1px;
+}
+
+
 /* CREATE NEW COMMENT ON READPOST HANDLEBARS PAGE */
 .createcomment-card{
     /* background-color: rgb(214, 237, 214);
@@ -213,7 +271,6 @@ main {
     font-size: large;
 } */
 
-
 .comment-button {
     margin: auto;
     width: 25%;
@@ -225,36 +282,5 @@ main {
     margin-left: 40%;
 }
 
-/* CREATE NEW POST  */
 
-/* CREATE NEW POST BUTTONS */
-.createpost-btn {
-    margin: auto;
-    width: 25%;
-    height: 5vh;
-    font-size: larger;
-    background-color: rgb(56, 22, 22);
-    color: rgb(214, 237, 214);
-    margin-top: 10px;
-    margin-left: 40%;
-}
 
-.createpost-btn:hover {
-    cursor: pointer;
-    color: darkcyan;
-}
-
-.createpost-btn:active {
-    box-shadow: 1px 1px 1px 1px;
-}
-
-/* CREATE POST TEXT AREAS AND FONT */
-.createpost-title {
-    background-color: white;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-
-.createpost-text{
-    background-color: white;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}

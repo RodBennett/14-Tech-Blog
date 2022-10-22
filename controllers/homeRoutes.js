@@ -22,33 +22,25 @@ router.get("/", async (req, res) => {
 });
 
 // GET one post by id
-router.get(":id", withAuth, async (req, res) => {
-  try {
-    const dbPostData = await Post.findOne({
-      where: {
-        id: req.params.id,
-      },
-      include: [
-        { model: User }, { model: Comment, include: {model: User } }],
-    });
-    if (!dbPostData) {
-      res.status(404).json({ message: "No post found with this id" });
-      return;
-    }
+router.get("/posts/:id", withAuth, async (req, res) => {
 
-    const post = dbPostData.get({ plain: true });
-    const comment = post.comment;
-    res.render('dashboard', {
-            post,
-            comment,
-            logged_in: req.session.logged_in,
-          });
-    res.status(200).json(dbPostData);
+  try {
+    const postData = await Post.findAll({
+      where: {
+        user_id: req.session.user_id,
+      },
+    });
+    const posts = postData.map((post) => post.get({ plain: true }));
+
+    res.render('readpost', {
+      layout: 'dashboard',
+      posts,
+    });
   } catch (err) {
-    console.log(err);
-    res.status(501).json(err);
+    res.redirect('login');
   }
 });
+// });
 
 // GET route to redierct user to homepage after signing up
 router.get("/signup", (req, res) => {
@@ -68,5 +60,23 @@ router.get("/login", (req, res) => {
   res.render("login");
 });
 
-
 module.exports = router;
+
+
+router.get("/", async (req, res) => {
+  try {
+    const dbPostData = await Post.findAll({
+      include: [{ model: User }, { model: Comment, include: { model: User } }],
+    });
+
+    const posts = dbPostData.map((post) => post.get({ plain: true }));
+
+    res.render("homepage", {
+      posts,
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
