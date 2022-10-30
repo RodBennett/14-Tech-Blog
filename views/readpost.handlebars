@@ -1,9 +1,12 @@
 <div class="readpost-cards">
          <div class="readpost-header">
-            <div class="readpost-title">{{post.post_title}}</div>
-            <p class="author">Posted by {{user.username}} at {{ post.post_date}}</p>
+            <div class="readpost-title">{{ id}} {{post.post_title}}</div>
+            <p class="author">Posted by {{post.user.username}} at {{ post.post_date}}</p>
             <p class="readpost-text">{{post.post_content}}</p><br>
         </div>
+</div>
+<div class="saved-comment">
+   Comment {{ post.comments.user.username }}
 </div>
 
 {{!-- /<div class="readcomment-card"> {{ comment.content }} this is a comment<br></div> --}}
@@ -14,9 +17,7 @@
     </form>
 </div>
 <a href="/createpost">Create a new post</a>
-<div class="saved-comment">
-    {{ comment.content }}
-</div>
+
     {{!-- <button class="createpost-btn">+ New Post</button> --}}
      
     <a href="/login">Login</a>

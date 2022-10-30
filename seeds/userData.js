@@ -7,11 +7,11 @@ const userData =
         password: "password12345"
     },
     {
-        username: "ernie",
+        username: "jeronimo",
         password: "password12345"
     },
     {
-        username: "bert",
+        username: "sqlsucks",
         password: "password12345"
     },
 ]

@@ -10,8 +10,8 @@ router.get('/', withAuth, async (req, res) => {
       },
     });
     const posts = postData.map((post) => post.get({ plain: true }));
-
-    res.render('createpost', {
+    
+    res.render('newpost', {
       layout: 'dashboard',
       posts,
     });
@@ -20,9 +20,9 @@ router.get('/', withAuth, async (req, res) => {
   }
 });
 
-router.get('/newpost', withAuth, (req, res) => {
-  res.render('homepage', {
-    // layout: 'dashboard',
+router.get('/create', withAuth, (req, res) => {
+  res.render('createpost', {
+    layout: 'main',
   });
 });
 

@@ -12,12 +12,19 @@
     <nav>
         <a href="/">Home</a>
          <a href="/dashboard">Dashboard</a>
-         <a href="/login">Login</a>
         {{#if logged_in}}
         <a href="#" id="logout">Logout</a>
-        {{/if}}
+        {{else}}
+         <a href="/login">Login</a>
+       {{/if}}
+
     </nav>
+    {{#if}}
+    {{else}}
+    {{/if}}
     <h1 class="jumbotron">Tech Blog</h1>
+
+
     </header>
     <main>
         {{!-- <div class="main-container"> --}}

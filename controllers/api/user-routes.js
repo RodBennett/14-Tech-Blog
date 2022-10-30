@@ -3,46 +3,46 @@ const { User, Post, Comment } = require('../../models');
 
 // endpoint /api/users
 
-// GET route for all users
-router.get("/", async (req, res) => {
-  try {
-    const userData = await User.findAll({
-      attributes: { exclude: ["[password"] },
-    });
-    res.json(userData);
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
+// // GET route for all users
+// router.get("/", async (req, res) => {
+//   try {
+//     const userData = await User.findAll({
+//       attributes: { exclude: ["[password"] },
+//     });
+//     res.json(userData);
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).json(err);
+//   }
+// });
 
-// GET route to find one user
-router.get("/login", async (req, res) => {
-  try {
-    const userData = await User.findOne({
-      where: {
-        id: req.body.username,
-        password: req.body.password
-      },
-    //   include: [
-    //     { model: Post, include: { model: User } }, { model: Post}, { model: Comment }],
-    });
-    if (!userData) {
-      res.status(404).json({ message: "No user found with this id" });
-      return;
-    }
+// // GET route to find one user
+// router.get("/login", async (req, res) => {
+//   try {
+//     const userData = await User.findOne({
+//       where: {
+//         id: req.body.username,
+//         password: req.body.password
+//       },
+//     //   include: [
+//     //     { model: Post, include: { model: User } }, { model: Post}, { model: Comment }],
+//     });
+//     if (!userData) {
+//       res.status(404).json({ message: "No user found with this id" });
+//       return;
+//     }
 
-    const validPassword = userData.checkPassword(req.body.password)
-    if(!validPassword) {
-      res.json(400).json({ message: "Invalid password" });
-      return
-    }
-    res.json(userData);
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
+//     const validPassword = userData.checkPassword(req.body.password)
+//     if(!validPassword) {
+//       res.json(400).json({ message: "Invalid password" });
+//       return
+//     }
+//     res.json(userData);
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).json(err);
+//   }
+// });
 
 // CREATE new user
 router.post('/', async (req, res) => {

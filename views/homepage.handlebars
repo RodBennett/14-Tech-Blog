@@ -3,12 +3,12 @@
 <a href="/posts/{{id}}">
     <div class="readpost-cards">
         <div class="readpost-header">
-            <p class="readpost-title">{{post.post_title}} Created by {{ post.user_username }} on {{ format_date post.post_date }}</p></div>
+            <p class="readpost-title">{{post.post_title}} Created by {{ post.user.username }} on {{ format_date post.post_date }}</p></div>
             <p class ="readpost-text">{{post.post_content}}</p>
     </div></a>
 {{/each}}
     {{#if logged_in}}
-    <a href="/dashboard"><button class="createpost-btn">+ New Post</button></a>
+    {{!-- <a href="/dashboard"><button class="createpost-btn">+ New Post</button></a> --}}
     <a href="#" id="logout">Logout</a>
     {{else}}
     <a href="/login">Login</a>

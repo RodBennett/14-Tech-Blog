@@ -16,22 +16,22 @@ router.get("/", async (req, res) => {
 });
 
 // GET route for one single comment
-// router.get("/:id", withAuth, async (req, res) => {
-//   try {
-//     const dbCommentData = await Comment.findByPk({
-//       where: {
-//         id: req.params.id,
-//       },
-//     });
-//     res.json(dbCommentData);
-//   } catch (err) {
-//     console.log(err);
-//     res.status(500).json(err);
-//   }
-// });
+router.get("/:id", withAuth, async (req, res) => {
+  try {
+    const dbCommentData = await Comment.findByPk({
+      where: {
+        id: req.params.id,
+      },
+    });
+    res.json(dbCommentData);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
 
 // POST route to create a new comment
-router.post("/", async (req, res) => {
+router.post("/", withAuth, async (req, res) => {
   if (req.session) {
     try {
       const newComment = await Comment.create({
@@ -43,7 +43,7 @@ router.post("/", async (req, res) => {
       res.json(newComment);
     } catch (err) {
       console.log(err);
-      // res.status(501).json(err);
+      res.status(501).json(err);
     }
   }
 });
