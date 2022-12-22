@@ -3,6 +3,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ### [Heroku Deployment Link]()
+
+### ⚠️ This app is still under development ⚠️
+
 ## Overview
 
 In this full-stack project, I created a tech blog where users can create sign up, log in, create new posts and comment on others' posts
