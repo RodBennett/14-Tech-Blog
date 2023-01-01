@@ -1,64 +1,26 @@
 const router = require('express').Router();
-const { User, Post, Comment } = require('../../models');
+const { User } = require('../../models');
+
+const colors = require("colors")
 
 // endpoint /api/users
 
-// // GET route for all users
-// router.get("/", async (req, res) => {
-//   try {
-//     const userData = await User.findAll({
-//       attributes: { exclude: ["[password"] },
-//     });
-//     res.json(userData);
-//   } catch (err) {
-//     console.log(err);
-//     res.status(500).json(err);
-//   }
-// });
-
-// // GET route to find one user
-// router.get("/login", async (req, res) => {
-//   try {
-//     const userData = await User.findOne({
-//       where: {
-//         id: req.body.username,
-//         password: req.body.password
-//       },
-//     //   include: [
-//     //     { model: Post, include: { model: User } }, { model: Post}, { model: Comment }],
-//     });
-//     if (!userData) {
-//       res.status(404).json({ message: "No user found with this id" });
-//       return;
-//     }
-
-//     const validPassword = userData.checkPassword(req.body.password)
-//     if(!validPassword) {
-//       res.json(400).json({ message: "Invalid password" });
-//       return
-//     }
-//     res.json(userData);
-//   } catch (err) {
-//     console.log(err);
-//     res.status(500).json(err);
-//   }
-// });
-
-// CREATE new user
+// CREATE new user via signup page
 router.post('/', async (req, res) => {
   try {
-    const userData = await User.create({
+    const newUser = await User.create({
       username: req.body.username,
       password: req.body.password,
     });
+
     req.session.save(() => {
-      req.session.user_id = userData.id;
-      req.session.username = userData.username;
+      req.session.user_id = newUser.id;
+      req.session.username = newUser.username;
       req.session.logged_in = true;
 
-      res.json(userData)
+      res.json(newUser)
 
-  });
+    });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -66,21 +28,22 @@ router.post('/', async (req, res) => {
 
 // Login
 router.post('/login', async (req, res) => {
+  console.log(req.session.bgRed)
   try {
-    const userData = await User.findOne({
+    const user = await User.findOne({
       where: {
         username: req.body.username,
+        password: req.body.password,
       },
     });
     document.location.redirect('/dashboard')
-
-    if (!userData) {
+    if (!user) {
       res
         .status(400)
         .json({ message: 'Incorrect username or password. Please try again!' });
       return;
     }
-    const validPassword = userData.checkPassword(req.body.password);
+    const validPassword = user.checkPassword(req.body.password);
 
     if (!validPassword) {
       res
@@ -89,59 +52,34 @@ router.post('/login', async (req, res) => {
         .json({ message: 'Incorrect password. Please try again!' });
       return;
     }
-
-    if (!userData && !validPassword) {
-      res
-        .redirect('/signup')
-        .json({ message: "Please create user account"})
-      return;
-    }
     // Once the user successfully logs in, set up the sessions variable 'logged_in'
     req.session.save(() => {
-      req.session.user_id = userData.id;
-      req.session.username = userData.username;
+      req.session.user_id = user.id;
+      req.session.username = user.username;
       req.session.logged_in = true;
 
       res
         .status(200)
-        .json({ userData, message: 'You are now logged in!' })
+        .json({ user, message: 'You are now logged in!' })
         .redirect('/homepage')
     });
   } catch (err) {
     console.log(err);
-    res.status(500).json(err);
+    res.status(500).json({ message: "No user found!"});
   }
 });
 
-router.get("/signup", (req, res) => {
-  if (req.session.logged_in) {
-    res.redirect("/");
-    return;
-  }
-  res.render("signup");
-});
-
-   // after login, this redirects user to homepage
-   router.get("/login", (req, res) => {
+//   // Logout
+  router.post('/logout', (req, res) => {
+    // When the user logs out, destroy the session
     console.log(req.session)
     if (req.session.logged_in) {
-      res.redirect("/");
-      return;
+      req.session.destroy(() => {
+        res.status(204).end();
+      });
+    } else {
+      res.status(404).end();
     }
-    res.render("login");
-  }),
-
-// Logout
-router.post('/logout', (req, res) => {
-  // When the user logs out, destroy the session
-  console.log(req.session)
-  if (req.session.logged_in) {
-    req.session.destroy(() => {
-      res.status(204).end();
-    });
-  } else {
-    res.status(404).end();
-  }
-});
+  });
 
 module.exports = router;

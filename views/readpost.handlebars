@@ -1,12 +1,14 @@
 <div class="readpost-cards">
          <div class="readpost-header">
-            <div class="readpost-title">{{ id}} {{post.post_title}}</div>
-            <p class="author">Posted by {{post.user.username}} at {{ post.post_date}}</p>
+            <div class="readpost-title" id={{post.id}}>{{ post.id}} {{post.post_title}}             <p class="author">Posted by {{post.user.username}} at {{ post.post_date}}</p>
+             </div>
             <p class="readpost-text">{{post.post_content}}</p><br>
         </div>
 </div>
 <div class="saved-comment">
-   Comment {{ post.comments.user.username }}
+   {{#each post.comments}}
+   <p>{{ content }}</p>
+   {{/each}}
 </div>
 
 {{!-- /<div class="readcomment-card"> {{ comment.content }} this is a comment<br></div> --}}
@@ -22,4 +24,4 @@
      
     <a href="/login">Login</a>
 
-    <script src="/js/createcomment.js"></script>
+    <script src="/js/comment.js"></script>

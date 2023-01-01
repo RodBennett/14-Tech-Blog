@@ -22,7 +22,7 @@ router.get("/", async (req, res) => {
 });
 
 // GET one post by id
-router.get("/posts/:id", withAuth,async (req, res) => {
+router.get("/posts/:id", withAuth, async (req, res) => {
 
   try {
     const postData = await Post.findByPk(
@@ -45,7 +45,7 @@ router.get("/posts/:id", withAuth,async (req, res) => {
 });
 // });
 
-// GET route to redierct user to homepage after signing up
+// GET route to redirect user to homepage after signing up
 router.get("/signup", (req, res) => {
   if (req.session.logged_in) {
     res.redirect("/");
@@ -62,8 +62,6 @@ router.get("/login", (req, res) => {
   }
   res.render("login");
 });
-
-module.exports = router;
 
 
 router.get("/", async (req, res) => {
@@ -83,3 +81,5 @@ router.get("/", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+module.exports = router;

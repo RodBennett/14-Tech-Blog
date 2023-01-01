@@ -1,26 +1,31 @@
 const commentFormHandler = async function(event) {
     event.preventDefault();
   
-    const postId = document.querySelector('input[name="post-id"]').value;
-    const body = document.querySelector('textarea[name="comment-body"]').value;
-  
-    if (body) {
-      await fetch('/api/comment', {
+    const postId = parseInt(document.querySelector('.readpost-title').id);
+    const comment = document.querySelector('textarea[name="comment"]').value;
+    
+    if (comment) {
+      await fetch('/api/comments', {
         method: 'POST',
-        body: JSON.stringify({
+        comment: JSON.stringify({
           postId,
-          body
+          comment
         }),
         headers: {
           'Content-Type': 'application/json'
         }
       });
-  
+
       document.location.reload();
     }
   };
   
   document
-    .querySelector('#new-comment-form')
+    .querySelector('.createcomment-form')
     .addEventListener('submit', commentFormHandler);
+    
+
+// write PUT method here
+
+
   

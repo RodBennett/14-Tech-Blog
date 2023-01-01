@@ -37,7 +37,7 @@ a {
     background: rgb(214, 237, 214);
     color: rgb(56, 22, 22);
     width: 300px;
-    margin: 50px;
+    margin: 20px;
     border-radius: 5px;
     text-align: center;
 }
@@ -76,7 +76,7 @@ main {
     margin: 10px 50px;
 }
 
-#username-input{
+#username-login{
     width: 40%;
     height: 5vh;
 }

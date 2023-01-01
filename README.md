@@ -5,7 +5,7 @@
 ### [Heroku Deployment Link]()
 ## Overview
 
-In this full-stack project, I created a tech blog where users can create sign up, log in, create new posts and comment on others' posts
+In this full-stack application, I created a tech blog where users can sign up, log in, create new posts, edit posts, and comment on others' posts.
 
 ## Table of Contents
 
@@ -59,9 +59,12 @@ THEN I am able to view comments but I am prompted to log in again before I can a
 ## Static Screenshots
 
 <img width="1352" alt="Screenshot" src="Assets/screenshot-1.png">
+<img width="1352" alt="Screenshot" src="Assets/screenshot-1.png">
+<img width="1352" alt="Screenshot" src="Assets/screenshot-1.png">
+<img width="1352" alt="Screenshot" src="Assets/screenshot-1.png">
 
 ## Installation
-This is a deployed app so no special installaiton is required. Just click on the Heroku link mentioned above and the user can use all functions from the deployed link.
+This is a deployed app so no special installation is required. Just click on the Heroku link mentioned above and the user can navigate to all functions from the deployed link.
 
 ## Technology Used
 - [express.js](https://expressjs.com/): for routing
@@ -72,17 +75,16 @@ This is a deployed app so no special installaiton is required. Just click on the
 - [sequelize](https://sequelize.org/): for ORM database relations
 - [nodemon](https://www.npmjs.com/package/nodemon): development tool for real-time updating
 
-
 ## Contributing
 As this was a project for the University of Denver bootcamp, no outside contributions are being accepted at this time.
 
 ## Challenges
-This was definitely the most challenging assignment of the bootcamp so far.  The first challenge was learning how to tease out back-end routes from front-end ones.  That in itself was a major obstacle that took me considerable amounts of time to understand.  The second challenge was in Handlebars itself, which, combined with routes, makes for some difficulkt programming.  On the the other hand, no assignment has taught me more about back-end development than this one, and even though I am aware that Handlebars is hardly ever used in the development community, I am confident that the logic behind this assignemnt will come in handy for all of my full-stack development projects.
+This was definitely the most challenging assignment of the bootcamp so far.  The first challenge was learning how to tease out back-end routes from front-end ones.  That in itself was a major obstacle that took me considerable amounts of time to understand.  The second challenge was in Handlebars itself, which, combined with routes, made for some difficult programming.  On the the other hand, no assignment has taught me more about back-end development than this one, and even though I am aware that Handlebars is hardly ever used in the development community, I am confident that the logic behind this assignemnt will come in handy for all of my full-stack development projects.
 
 ## Future Development
 In the future, I would like to add more styling to this blog to make the UI better.
 
 ## Contact Info
 
-- Rod's email: rod.benett75@gmail.com
+- Rod's email: rod.bennett75@gmail.com
 - [Rod's Github Profile](https://github.com/RodBennett)
