@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-### Deployment link: https://rodbennett.github.io/14-Tech-Blog/
+### Heroku Deployment link: https://rb-tech-blog.herokuapp.com/
 
 ## Overview
 
