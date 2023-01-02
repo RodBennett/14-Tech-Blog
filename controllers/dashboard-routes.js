@@ -6,12 +6,13 @@ router.get('/', withAuth, async (req, res) => {
   try {
     const postData = await Post.findAll({
       where: {
-        user_id: req.session.user_id,
+        userId: req.session.userId,
       },
     });
+
     const posts = postData.map((post) => post.get({ plain: true }));
-    
-    res.render('newpost', {
+
+    res.render('all-posts-admin', {
       layout: 'dashboard',
       posts,
     });
@@ -20,9 +21,9 @@ router.get('/', withAuth, async (req, res) => {
   }
 });
 
-router.get('/create', withAuth, (req, res) => {
-  res.render('createpost', {
-    layout: 'main',
+router.get('/new', withAuth, (req, res) => {
+  res.render('new-post', {
+    layout: 'dashboard',
   });
 });
 

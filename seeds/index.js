@@ -1,5 +1,5 @@
 // import sequelize and seed .js files for seeding
-const sequelize = require("../config/connection");
+const sequelize = require("../config/config");
 const seedPosts = require("./postData");
 const seedComments = require("./commentData");
 const seedUsers = require("./userData");
