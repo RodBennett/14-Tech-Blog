@@ -4,6 +4,21 @@ const withAuth = require('../../utils/auth');
 
 // endpoint api/posts
 
+// POST route for creating a post
+router.post('/', withAuth, async (req, res) => {
+  try {
+    const newPost = await Post.create({
+      post_title: req.body.title,
+      post_content: req.body.content,
+      user_id: req.session.user_id,
+    });
+
+    res.status(200).json(newPost);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
 // GET route for all posts
 router.get("/", async (req, res) => {
   try {
@@ -46,21 +61,6 @@ router.get("/:id", withAuth, async (req, res) => {
   }
 });
 
-// POST route for creating a post
-router.post('/', withAuth, async (req, res) => {
-  try {
-    const newPost = await Post.create({
-      post_title: req.body.title,
-      post_content: req.body.content,
-      user_id: req.session.user_id,
-    });
-
-    res.status(200).json(newPost);
-  } catch (err) {
-    res.status(400).json(err);
-  }
-});
-
 // PUT route for updating/editing a post
 router.put('/:id', withAuth, async (req, res) => {
   try {
@@ -70,13 +70,12 @@ router.put('/:id', withAuth, async (req, res) => {
     },
     { 
       where: {
-        id: req.params.id
+        id: req.params.id,
+        user_id: req.session.user_id,
     }, 
+    include: [
+      { model: User}, { model: Comment, include: {model: User } }],
   });
-  if (!updatePost) {
-    res.status(404).json({ message: "No post found with this id" });
-    return;
-  }
     res.status(200).json(updatePost);
   } catch (err) {
     res.status(400).json(err);

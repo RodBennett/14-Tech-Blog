@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-    <nav>
+    <nav class="navbar">
         <a href="/">Home</a>
          <a href="/dashboard">Dashboard</a>
         {{#if logged_in}}
@@ -17,7 +17,6 @@
         {{else}}
          <a href="/login">Login</a>
        {{/if}}
-
     </nav>
     {{#if logged_in}}
     <h1 class="jumbotron">Dashboard</h1>
@@ -30,6 +29,9 @@
             {{{ body }}}
         {{!-- </div> --}}
     </main>
+    <footer class="footer">
+    Made with ❤️ by Rod Bennett
+</footer>
 </body>
 </html>
 

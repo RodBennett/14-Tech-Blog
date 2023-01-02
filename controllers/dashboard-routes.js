@@ -22,7 +22,7 @@ router.get('/', withAuth, async (req, res) => {
 
 router.get('/create', withAuth, (req, res) => {
   res.render('createpost', {
-    layout: 'main',
+    layout: 'dashboard',
   });
 });
 

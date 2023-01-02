@@ -4,25 +4,32 @@
     flex: 1 0;
 }
 
+body {
+    background-color: rgb(214, 237, 214);
+    margin: 0;
+    padding: 0;
+}
+
 header {
     background-color: rgb(56, 22, 22);
     color: rgb(188, 220, 188);
     height: 20vh;
 }
 
-nav{ 
+.navbar { 
     display: flex;
+    /* margin: auto; */
+    text-align: center;
     justify-content: space-around;
     font-size: larger;
     color:rgb(214, 237, 214);
-    margin-left: 20px;
+    padding: 5px;
 }
 a {
-    text-decoration: none;
+    text-decoration: none; 
     color:rgb(214, 237, 214);
-    margin-top: 20px;
-    margin-left: 10px;
 }
+
 .jumbotron {
     background: rgb(214, 237, 214);
     color: rgb(56, 22, 22);
@@ -38,6 +45,7 @@ a {
     color: rgb(56, 22, 22);
     width: 300px;
     margin: 20px;
+    margin-top: 40px;
     border-radius: 5px;
     text-align: center;
 }
@@ -45,7 +53,6 @@ a {
 main {
     background-color: rgb(214, 237, 214);
     height: 100vh;
-    margin-top: 0;
 }
 
 .signup-card {
@@ -146,8 +153,8 @@ main {
     border: 2px solid rgb(56, 22, 22);
     width: 90%;
     margin: auto;
-    margin-top: 30px;
-    height: 15vh;
+    margin-top: 20px;
+    height: 20vh;
     border-radius: 5px;
 }
 
@@ -160,12 +167,14 @@ main {
 .readpost-header{
     background-color: rgb(56, 22, 22);
     height: 5vh;
+    padding: 0px;
+    margin-bottom: 0px;
 }
 
 .readpost-title {
     color: rgb(158, 177, 158);
     font-size: larger;
-    padding: 10px;
+    padding: 0px;
 }
 
 .readpost-title:hover {
@@ -174,7 +183,7 @@ main {
 
 .readpost-text {
     color: rgb(56, 22, 22);
-    padding: 10px;
+    padding: 5px;
 }
 
 /* CREATE POST HANDLEBARS PAGE */
@@ -183,19 +192,25 @@ main {
     width: 80%;
     margin: auto;
     margin-top: 30px;
-    height: 50vh;
+    height: 55vh;
     border-radius: 5px;
 }
+
+#editpost-card{
+    height: 62vh;
+}
 .createnewpost {
-    padding: 10px;
-    margin-top: 20px;
+    padding: 15px;
+    margin-top: 0px;
 }
 
 .createpost-header{
     /* margin: auto; */
     height: 10vh;
     width: 100%;
-    border-radius: 5px;
+    background-color: rgb(56, 22, 22);
+    color: rgb(214, 237, 214);
+    margin-bottom: 10px;
 }
 
 .createpost-title {
@@ -207,6 +222,7 @@ main {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     margin-top: 5px;
     border-radius: 5px;
+    margin-bottom: 10px;
 }
 
 .createpost-text{
@@ -220,13 +236,18 @@ main {
 }
 .createpost-btn {
     margin: auto;
-    width: 25%;
+    width: 20%;
     height: 5vh;
     font-size: larger;
     background-color: rgb(56, 22, 22);
     color: rgb(214, 237, 214);
     margin-top: 20px;
-    margin-left: 40%;
+    margin-left: 0%;
+}
+
+#create-btn{
+    margin-left: 25%;
+    width: 50%;
 }
 
 .createpost-btn:hover {
@@ -238,6 +259,21 @@ main {
     box-shadow: 1px 1px 1px 1px;
 }
 
+.form-label {
+    padding: 5px;
+    font-size: 1.5rem;
+}
+#delete-btn {
+    margin-top: 10px;
+    margin-left: 35%;
+    width: 40%;
+}
+
+#edit-btn {
+    margin-top: 10px;
+    margin-left: 35%;
+    width: 40%;
+}
 
 /* CREATE NEW COMMENT ON READPOST HANDLEBARS PAGE */
 .createcomment-card{
@@ -280,6 +316,11 @@ main {
     color: rgb(214, 237, 214);
     margin-top: 10px;
     margin-left: 40%;
+}
+
+.footer{
+    text-align: center;
+    position:static;
 }
 
 

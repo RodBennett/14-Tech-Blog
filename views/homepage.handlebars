@@ -1,19 +1,29 @@
 <!-- goes through each post in the posts array from homeroutes.js -->
 {{#each posts as |post| }}
-<a href="/posts/{{id}}">
-    <div class="readpost-cards">
-        <div class="readpost-header">
-            <p class="readpost-title">{{post.post_title}} Created by {{ post.user.username }} on {{ format_date post.post_date }}</p></div>
-            <p class ="readpost-text">{{post.post_content}}</p>
-    </div></a>
+
+<div class="readpost-cards">
+    <header class="readpost-header">
+        <div class="readpost-title"><a href="/posts/{{id}}">
+                <p>{{post.post_title}} 
+                    Created by {{ post.user.username }} 
+                    on {{ format_date post.post_date }}
+                </p>
+        </div>
+    </header>
+    <div class="readpost-text">
+        <p>{{post.post_content}}</p>
+    </div>
+</div>
+
+
 {{/each}}
-    {{#if logged_in}}
-    {{!-- <a href="/dashboard"><button class="createpost-btn">+ New Post</button></a> --}}
-    <a href="#" id="logout">Logout</a>
-    {{else}}
-    <a href="/login">Login</a>
-    {{/if}}
+{{#if logged_in}}
+{{!-- <a href="/dashboard"><button class="createpost-btn">+ New Post</button></a> --}}
+<a href="#" id="logout">Logout</a>
+{{else}}
+<a href="/login">Login</a>
+{{/if}}
 
-    {{!-- <script src="/js/createpost.js"></script> --}}
-    <script src="/js/logout.js"></script>
-
+{{!--
+<script src="/js/createpost.js"></script> --}}
+<script src="/js/logout.js"></script>
