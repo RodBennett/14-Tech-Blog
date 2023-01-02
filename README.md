@@ -2,23 +2,21 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-### [Heroku Deployment Link]()
-
-### ⚠️ This app is still under development ⚠️
+### Deployment link: https://rodbennett.github.io/14-Tech-Blog/
 
 ## Overview
 
-In this full-stack application, I created a tech blog where users can sign up, log in, create new posts, edit posts, and comment on others' posts.
+In this full-stack MVC application, I created a tech blog where users can sign up, log in, create new posts, edit posts, and comment on others' posts.
 
 ## Table of Contents
 
 - [Acceptance Criteria](#acceptance-criteria)
 - [Static Screenshots](#static-screenshots)
-- [Installation](#installation)
 - [Technology Used](#technology-used)
 - [Contributing](#contributing)
 - [Challenges](#challenges)
 - [Future Development](#future-development)
+- [License](#license)
 - [Contact Info](#contact-info)
 
 ## Acceptance Criteria
@@ -61,13 +59,17 @@ THEN I am able to view comments but I am prompted to log in again before I can a
 
 ## Static Screenshots
 
-<img width="1352" alt="Screenshot" src="Assets/screenshot-1.png">
-<img width="1352" alt="Screenshot" src="Assets/screenshot-1.png">
-<img width="1352" alt="Screenshot" src="Assets/screenshot-1.png">
-<img width="1352" alt="Screenshot" src="Assets/screenshot-1.png">
+### - Homepage before loggin in
+<img width="1352" alt="Screenshot" src="Assets/Home.png">
 
-## Installation
-This is a deployed app so no special installation is required. Just click on the Heroku link mentioned above and the user can navigate to all functions from the deployed link.
+### - Dashboard with User Context posts only
+<img width="1352" alt="Screenshot" src="Assets/Dashboard.png">
+
+### - Edit post functionality
+<img width="1352" alt="Screenshot" src="Assets/Edit.png">
+
+### - Comment on others' posts
+<img width="1352" alt="Screenshot" src="Assets/Comment.png">
 
 ## Technology Used
 - [express.js](https://expressjs.com/): for routing
@@ -86,6 +88,9 @@ This was definitely the most challenging assignment of the bootcamp so far.  The
 
 ## Future Development
 In the future, I would like to add more styling to this blog to make the UI better.
+
+## License
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Contact Info
 
